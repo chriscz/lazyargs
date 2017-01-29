@@ -2,7 +2,7 @@ from lazyargs import *
 import pytest
 
 # --- checking functions
-@checkfunction
+@lazyfunction
 def equals(expected, value):
     assert expected == value, "expected `{}`, got`{}`".format(expected, value)
 
@@ -24,7 +24,7 @@ def check_contains(keyword_list, kwargs, check_reverse=False):
         for kw in kwargs:
             assert kw in keyword_list, '{} not in {}'.format(kw, keyword_list)
 
-@checkfunction
+@lazyfunction
 def check_string(string, lower=False, upper=False, digit=False):
     ERROR = lambda x: ValueError('{} is not'.format(string, x))
 
@@ -35,7 +35,7 @@ def check_string(string, lower=False, upper=False, digit=False):
     if digit and not string.isdigit():
         raise ERROR("digit")
 
-@checkfunction
+@lazyfunction
 def check_name_against_request_user(url_name, request):
     if url_name != request['user']['username']:
         raise ValueError("user != username")

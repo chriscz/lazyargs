@@ -1,2 +1,2 @@
-from .core import S, W, precondition, checkfunction
+from .api import *
 

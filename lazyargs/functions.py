@@ -6,7 +6,7 @@ CallArguments = namedtuple('CallArguments', ['args', 'argsdict', 'kwargs', 'vara
 # kwargs --> dict[argname -> value]
 # varargs --> *args
 # varkwargs --> **kwargs
-# --- help functions
+
 def getcallargs(argspec, args, kwargs):
     """Returns a CallArguments instance."""
     kwarguments_rlen = -len(argspec.defaults) if argspec.defaults else None
