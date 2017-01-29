@@ -1,4 +1,5 @@
-from lazyargs import *
+from . import *
+from .api import W
 import pytest
 
 # --- checking functions
@@ -78,8 +79,8 @@ def test_sum_numbers():
 
 
 def test_load_profile():
-    d_load_profile = precondition(check_name_against_request_user(S.name, S.request))(load_profile)
-    d_load_profile2 = precondition(check_name_against_request_user(S.name, S[0]))(load_profile)
+    d_load_profile = precondition(check_name_against_request_user(A.name, A.request))(load_profile)
+    d_load_profile2 = precondition(check_name_against_request_user(A.name, A[0]))(load_profile)
 
     assert d_load_profile(request, "chris")
     assert d_load_profile2(request, "chris")
@@ -120,7 +121,7 @@ def test_load_profile_pass_arguments():
         d_load_profile(request, "heinrich")  # <-- will ignore heinrich
 
 def test_fetch_kwargs():
-    d_runner = precondition(check_contains, S['*args'], S['**kwargs'])(runner)
+    d_runner = precondition(check_contains, A['*args'], A['**kwargs'])(runner)
 
     assert d_runner('foo', 'bar', foo=1, bar=2)
 
@@ -128,7 +129,7 @@ def test_fetch_kwargs():
         d_runner('foo', 'bar', foo=1)
 
 def test_condition_function_kwargs():
-    d_runner = precondition(check_contains, S['*args'], S['**kwargs'], check_reverse=True)(runner)
+    d_runner = precondition(check_contains, A['*args'], A['**kwargs'], check_reverse=True)(runner)
 
     assert d_runner('foo', 'bar', foo=1)
 
@@ -139,13 +140,13 @@ def index_equality(expected, equals):
     return precondition(equals(expected, equals))(index)(request)
 
 def test_chaining_1():
-    assert index_equality('chris', S.request['user']['username'])
+    assert index_equality('chris', A.request['user']['username'])
 
 def test_chaining_2():
-    assert index_equality('alex', S.request['user']['friends'][0][0])
+    assert index_equality('alex', A.request['user']['friends'][0][0])
 
 def test_chaining_3():
-    assert index_equality('Hello Stranger!', S.request['user']['greetings']('Stranger'))
+    assert index_equality('Hello Stranger!', A.request['user']['greetings']('Stranger'))
 
 def test_chaining_4():
-    assert index_equality('alex', S.request['user']['friends'].name)
+    assert index_equality('alex', A.request['user']['friends'].name)

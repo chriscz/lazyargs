@@ -3,8 +3,7 @@ import functools
 from decorate import BaseDecorator
 from args import ArgumentResolver, LazyArgs
 
-
-__all__ = ['S', 'W', 'precondition', 'lazyfunction']
+__all__ = ['precondition', 'lazyfunction', 'A']
 
 # --- decorators
 def lazyfunction(function):
@@ -17,8 +16,8 @@ def lazyfunction(function):
     -------
     >>> @lazyfunction
     >>> def foo(a, b): pass
-    >>> # allows you to use @precondition(foo(S[0], S[1]))
-    >>> # instead of @precondition(foo, S[0], S[1])
+    >>> # allows you to use @precondition(foo(A[0], A[1]))
+    >>> # instead of @precondition(foo, A[0], A[1])
     """
     @functools.wraps(function)
     def wrapper(*args, **kwargs):
@@ -42,5 +41,5 @@ class PreconditionDecorator(BaseDecorator):
 
 precondition = PreconditionDecorator.decorator_args
 
+A = LazyArgs(try_harder=True)
 W = LazyArgs()
-S = LazyArgs(try_harder=True)

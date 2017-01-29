@@ -82,24 +82,3 @@ class BaseDecorator(object):
             return cls.decorator_noargs(args[0])
         else:
             return cls.decorator_args(*args, **kwargs)
-
-
-
-def main():
-    class F(BaseDecorator):
-        @excepts(ValueError, TypeError, RuntimeError)
-        def process_error(self, exc_info, context):
-            print exc_info[1]
-            self.raise_exception(exc_info)
-    value_error = F.decorator_hybrid
-
-    @value_error
-    def msum(a, b):
-        return a + b
-
-    print msum(1, 2)
-    print msum(1, 'a')
-
-
-if __name__ == '__main__':
-    main()

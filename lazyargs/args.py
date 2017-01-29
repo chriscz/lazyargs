@@ -79,7 +79,7 @@ class ChainedArgument(object):
         return self
 
     def __getattr__(self, *args, **kwargs):
-        self.__actions.append(('__getattr__', args, kwargs))
+        self.__actions.append(('__getattribute__', args, kwargs))
         return self
 
 class Argument(object):

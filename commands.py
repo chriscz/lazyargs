@@ -33,7 +33,7 @@ class CoverageCommand(Command):
 
     def run(self):
         assert os.getcwd() == self.cwd, 'Must be in package root: %s' % self.cwd
-        os.system("py.test --cov-report 'html:{}/coverage_report' --cov=pysorter".format(os.getcwd()))
+        os.system("py.test --cov-report 'html:{}/coverage_report' --cov=lazyargs".format(os.getcwd()))
 
 class BumpVersionCommand(Command):
     description = "bumps the versions minor "
