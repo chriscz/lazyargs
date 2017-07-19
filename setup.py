@@ -11,11 +11,12 @@ setup(
     version=read_version(),
     description='Lazily evaluated function arguments',
     long_description=open(os.path.join(base_dir, 'description.txt')).read().strip(),
-    license='GPL',
+    license='MPL',
     url='https://github.com/chriscz/lazyargs',
 
     author='Chris Coetzee',
     author_email='chriscz93@gmail.com',
+    license='Mozilla Public License 2.0 (MPL 2.0)',
 
     packages=find_packages(),
     setup_requires=['pytest-runner'],
@@ -37,7 +38,7 @@ setup(
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Console",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
         "Topic :: Utilities",
     ]
 )
